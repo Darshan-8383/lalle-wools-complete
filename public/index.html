@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>LALLEWOOLS — Oversized Tees | Wear Your Obsession</title>
+  <meta name="description" content="Oversized streetwear tees and fan art for your culture. Flat ₹50 shipping, cash on delivery available, easy returns." />
+  <link rel="canonical" href="__SITE_URL__/" />
+  <meta name="theme-color" content="#0A0A0A" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="LALLEWOOLS" />
+  <meta name="format-detection" content="telephone=no" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" type="image/png" sizes="48x48" href="icons/favicon-48.png" />
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="LALLEWOOLS" />
+  <meta property="og:title" content="LALLEWOOLS — Wear Your Obsession" />
+  <meta property="og:description" content="Oversized streetwear tees and fan art for your culture." />
+  <meta property="og:url" content="__SITE_URL__/" />
+  <meta property="og:image" content="__SITE_URL__/images/clothing/ganesha_tee.w1200.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"LALLEWOOLS","url":"__SITE_URL__/","logo":"__SITE_URL__/icons/icon-512.png"}</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Noto+Sans+Kannada:wght@700&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="images/clothing/ganesha_tee.w480.webp" type="image/webp" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/mobile.css" media="(max-width: 768px)" />
+</head>
+<body>
+
+<!-- ══════════════ INTRO OVERLAY (LOGO GLITCH) ══════════════ -->
+<div id="intro-overlay">
+  <canvas id="fabric-canvas"></canvas>
+  <div id="intro-logo">
+    <div class="intro-logo-img-wrap">
+      <img src="images/logo.w800.webp" alt="LALLEWOOLS" class="intro-logo-img" id="intro-logo-img" />
+      <img src="images/logo.w800.webp" alt="" class="intro-logo-glitch g1" />
+      <img src="images/logo.w800.webp" alt="" class="intro-logo-glitch g2" />
+      <img src="images/logo.w800.webp" alt="" class="intro-logo-glitch g3" />
+    </div>
+    <p class="intro-tagline">LALLEWOOLS — WEAR YOUR OBSESSION</p>
+  </div>
+  <div id="intro-bar"></div>
+</div>
+
+<!-- ══════════════ NAVBAR ══════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" onclick="scrollToTop();return false" aria-label="LALLEWOOLS home">
+      <img src="images/logo.w480.webp" alt="LALLEWOOLS" class="nav-logo-img" width="108" height="36" />
+      <span class="nav-logo-sub">WOOLS</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="#clothing-section">Men</a>
+      <a href="#drops-section">New Drops</a>
+      <a href="#custom-tee-section" class="nav-custom-link" hidden>Custom Tee</a>
+    </div>
+
+    <!-- HIGHLIGHTED SEARCH BAR -->
+    <div class="nav-search-bar" id="nav-search-bar">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Search tees…" id="nav-search-input" readonly onclick="openSearch()" aria-label="Search" />
+    </div>
+
+    <div class="nav-actions">
+      <button class="nav-icon-btn theme-toggle" id="theme-toggle" title="Toggle theme" aria-label="Toggle light/dark theme" type="button">
+        <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <button class="nav-icon-btn nav-account" id="account-btn" title="Account" aria-label="Account" type="button" onclick="openAccountModal()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
+      <button class="nav-icon-btn wishlist-btn" id="wishlist-btn" title="Wishlist" aria-label="Wishlist" type="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span id="wishlist-count">0</span>
+      </button>
+      <button class="nav-icon-btn" id="cart-btn" title="Bag" aria-label="Shopping bag" type="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span id="cart-count">0</span>
+      </button>
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu" type="button">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════ BOTTOM TAB BAR (phones) ══════════════ -->
+<nav id="bottom-nav" aria-label="Main">
+  <button type="button" class="bn-item active" data-bn="home" onclick="bnGo('home')">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
+    <span>Home</span>
+  </button>
+  <button type="button" class="bn-item" data-bn="tees" onclick="bnGo('tees')">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3 3 6l2 4 3-1v12h8V9l3 1 2-4-5-3a4 4 0 0 1-8 0z"/></svg>
+    <span>Tees</span>
+  </button>
+  <button type="button" class="bn-item" data-bn="wishlist" onclick="openWishlistPanel()">
+    <span class="bn-icon-wrap">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <i id="bn-wishlist-count" class="bn-badge"></i>
+    </span>
+    <span>Wishlist</span>
+  </button>
+  <button type="button" class="bn-item" data-bn="account" onclick="openAccountModal()">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <span>Account</span>
+  </button>
+</nav>
+
+<!-- ══════════════ MOBILE MENU ══════════════ -->
+<div id="mobile-menu-backdrop" onclick="closeMobileMenu()"></div>
+<div id="mobile-menu">
+  <button class="mobile-menu-close" id="mobile-close" aria-label="Close menu" type="button">✕</button>
+  <nav class="mobile-nav-links">
+    <a href="#clothing-section" onclick="closeMobileMenu()">Men</a>
+    <a href="#drops-section" onclick="closeMobileMenu()">New Drops</a>
+    <a href="#custom-tee-section" class="nav-custom-link" onclick="closeMobileMenu()" hidden>Custom Tee</a>
+  </nav>
+  <div class="mobile-nav-secondary">
+    <a href="#" onclick="closeMobileMenu();openAccountModal();return false">👤 My Account &amp; Orders</a>
+    <a href="#" onclick="closeMobileMenu();openTrackOrderModal(event);return false">📦 Track Order</a>
+  </div>
+  
+</div>
+
+<!-- ══════════════ SEARCH OVERLAY ══════════════ -->
+<div id="search-overlay" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-inner">
+    <div class="search-top">
+      <button id="search-close" type="button" aria-label="Close search">✕</button>
+      <div class="search-input-wrap">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="search" id="search-input" placeholder="Search tees, drops…" autocomplete="off" enterkeyhint="search" aria-label="Search products" />
+      </div>
+    </div>
+    <div class="search-label">POPULAR SEARCHES</div>
+    <div class="search-tags">
+      <button type="button" class="search-tag" onclick="fillSearch('anime tee')">anime tee</button>
+      <button type="button" class="search-tag" onclick="fillSearch('gaming')">gaming</button>
+      <button type="button" class="search-tag" onclick="fillSearch('Darshan')">Darshan</button>
+      <button type="button" class="search-tag" onclick="fillSearch('oversized')">oversized</button>
+    </div>
+    <div id="search-results"></div>
+  </div>
+</div>
+
+<!-- ══════════════ WISHLIST SIDEBAR ══════════════ -->
+<div id="wishlist-sidebar" role="dialog" aria-modal="true" aria-label="Wishlist">
+  <div class="cart-header">
+    <button id="wishlist-close" type="button" class="back-btn" aria-label="Close wishlist"><span class="x-glyph">✕</span><span class="back-glyph">←</span></button>
+    <h3>WISHLIST</h3>
+  </div>
+  <div id="wishlist-items"><div class="cart-empty">Your wishlist is empty.<br/>Tap ♡ on any product.</div></div>
+</div>
+
+<!-- ══════════════ CART SIDEBAR ══════════════ -->
+<div id="cart-sidebar" role="dialog" aria-modal="true" aria-label="Shopping bag">
+  <div class="cart-header">
+    <button id="cart-close" type="button" class="back-btn" aria-label="Close bag"><span class="x-glyph">✕</span><span class="back-glyph">←</span></button>
+    <h3>SHOPPING BAG <span id="cart-header-count"></span></h3>
+  </div>
+  <div id="cart-items"></div>
+  <div id="cart-footer">
+    <div class="price-details" id="cart-price-details"></div>
+    <button type="button" class="btn-checkout" id="cart-checkout-btn" onclick="openCheckout()">PLACE ORDER</button>
+  </div>
+</div>
+<div id="cart-overlay-bg"></div>
+
+<!-- ══════════════ CHECKOUT MODAL ══════════════ -->
+<div id="checkout-modal" class="modal-overlay">
+  <div class="modal-box checkout-modal-box">
+    <button class="modal-close" onclick="closeCheckout()" type="button" aria-label="Close checkout">✕</button>
+    <div class="checkout-steps">
+      <div class="checkout-step-indicator">
+        <div class="cs-step active" id="csi-1"><span>1</span> Address</div>
+        <div class="cs-line"></div>
+        <div class="cs-step" id="csi-2"><span>2</span> Payment</div>
+        <div class="cs-line"></div>
+        <div class="cs-step" id="csi-3"><span>3</span> Confirm</div>
+      </div>
+
+      <!-- STEP 1: ADDRESS -->
+      <div class="checkout-pane active" id="cp-1">
+        <h3>Delivery Address</h3>
+        <div class="checkout-form">
+          <div class="cf-row">
+            <input type="text" placeholder="Full Name *" id="co-name" autocomplete="name" />
+            <input type="tel" placeholder="Mobile Number *" id="co-phone" inputmode="numeric" autocomplete="tel-national" />
+          </div>
+          <input type="text" placeholder="Flat / House No, Building *" id="co-addr1" autocomplete="address-line1" />
+          <input type="text" placeholder="Area, Street, Landmark" id="co-addr2" autocomplete="address-line2" />
+          <div class="cf-row">
+            <input type="text" placeholder="PIN Code *" id="co-pin" inputmode="numeric" maxlength="6" autocomplete="postal-code" oninput="onPincodeInput(this)" />
+            <input type="text" placeholder="City *" id="co-city" autocomplete="address-level2" />
+          </div>
+          <div id="pin-status" style="font-size:.78rem;min-height:1.1em;color:var(--text-dim)"></div>
+          <select id="co-state" autocomplete="address-level1">
+            <option value="">Select State *</option>
+            <option>Andaman and Nicobar Islands</option><option>Andhra Pradesh</option><option>Arunachal Pradesh</option><option>Assam</option><option>Bihar</option><option>Chandigarh</option><option>Chhattisgarh</option><option>Dadra and Nagar Haveli and Daman and Diu</option><option>Delhi</option><option>Goa</option><option>Gujarat</option><option>Haryana</option><option>Himachal Pradesh</option><option>Jammu and Kashmir</option><option>Jharkhand</option><option>Karnataka</option><option>Kerala</option><option>Ladakh</option><option>Lakshadweep</option><option>Madhya Pradesh</option><option>Maharashtra</option><option>Manipur</option><option>Meghalaya</option><option>Mizoram</option><option>Nagaland</option><option>Odisha</option><option>Puducherry</option><option>Punjab</option><option>Rajasthan</option><option>Sikkim</option><option>Tamil Nadu</option><option>Telangana</option><option>Tripura</option><option>Uttar Pradesh</option><option>Uttarakhand</option><option>West Bengal</option>
+          </select>
+        </div>
+        <div class="checkout-actions"><button class="btn-primary" style="width:100%" onclick="goCheckoutStep(2)">CONTINUE TO PAYMENT</button></div>
+      </div>
+
+      <!-- STEP 2: PAYMENT -->
+      <div class="checkout-pane" id="cp-2">
+        <h3>Payment Method</h3>
+        <div class="payment-options">
+          <label class="payment-opt" id="opt-online" onclick="selectPayment('online')">
+            <div class="po-radio" id="po-online"></div>
+            <div class="po-icon">💳</div>
+            <div class="po-info">
+              <div class="po-name">Pay Online</div>
+              <div class="po-sub">UPI, cards &amp; net banking — secure Razorpay checkout</div>
+            </div>
+          </label>
+          <div id="online-unavailable" style="display:none;font-size:.8rem;color:var(--text-dim);padding:0 0 4px 4px">Online payment is not available right now — Cash on Delivery only.</div>
+
+          <label class="payment-opt" onclick="selectPayment('cod')">
+            <div class="po-radio" id="po-cod"></div>
+            <div class="po-icon">💵</div>
+            <div class="po-info">
+              <div class="po-name">Cash on Delivery</div>
+              <div class="po-sub">Pay when your order arrives (+₹40 COD fee)</div>
+            </div>
+          </label>
+        </div>
+        <div class="checkout-order-summary">
+          <div class="cos-row"><span>Subtotal</span><span id="co-subtotal">₹0</span></div>
+          <div class="cos-row"><span>Shipping</span><span id="co-shipping">₹50</span></div>
+          <div class="cos-row" id="cod-fee-row" style="display:none"><span>COD Fee</span><span>₹40</span></div>
+          <div class="cos-row cos-total"><span>Total</span><span id="co-total">₹0</span></div>
+        </div>
+        <div id="shipping-eta" style="font-size:.8rem;color:var(--text-dim);margin-top:.75rem"></div>
+        <div class="checkout-actions">
+          <button class="btn-ghost" onclick="goCheckoutStep(1)">← BACK</button>
+          <button class="btn-primary" style="flex:1" onclick="goCheckoutStep(3)">REVIEW ORDER</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: CONFIRM -->
+      <div class="checkout-pane" id="cp-3">
+        <h3>Review & Place Order</h3>
+        <div id="order-review-content"></div>
+        <div class="order-trust-badges">
+          <span>🔒 Secure Payment</span>
+          <span>📦 7-Day Returns</span>
+          <span>⚡ Fast Delivery</span>
+        </div>
+        <div class="checkout-actions">
+          <button class="btn-ghost" onclick="goCheckoutStep(2)">← BACK</button>
+          <button class="btn-primary" style="flex:1" id="place-order-btn" onclick="placeOrder()">PLACE ORDER</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: SUCCESS -->
+      <div class="checkout-pane" id="cp-4">
+        <div class="order-success">
+          <div class="success-icon">🎉</div>
+          <h2>Order Placed!</h2>
+          <p id="order-success-text">Your LALLEWOOLS order is confirmed. We'll email you when it ships — you can also track it any time from My Orders or the Track Order link.</p>
+          <div class="order-id-box">Order ID: <strong id="order-id-display"></strong></div>
+          <div class="success-actions">
+            <button class="btn-ghost" onclick="trackJustPlacedOrder()">TRACK ORDER</button>
+            <button class="btn-primary" onclick="closeCheckout()">CONTINUE SHOPPING</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ ACCOUNT MODAL (login / signup / order history) ══════════════ -->
+<div id="account-modal" class="modal-overlay">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeAccountModal()" type="button" aria-label="Close">✕</button>
+
+    <div id="account-guest-view">
+      <h3 id="account-form-title">Log In</h3>
+      <p style="font-size:.85rem;color:var(--text-dim);margin-bottom:1rem">Log in with your email, or continue with Google.</p>
+
+      <!-- Google (shown only when GOOGLE_CLIENT_ID is configured on the server) -->
+      <div id="google-login-wrap" style="display:none">
+        <div id="google-btn-slot" style="display:flex;justify-content:center;min-height:44px"></div>
+        <div class="auth-divider"><span>or</span></div>
+      </div>
+
+      <!-- Email + password -->
+      <div id="auth-email-view">
+        <div class="checkout-form">
+          <input type="text" placeholder="Full Name" id="acc-name" style="display:none">
+          <input type="email" placeholder="Email *" id="acc-email">
+          <input type="tel" placeholder="Phone" id="acc-phone" style="display:none">
+          <input type="password" placeholder="Password *" id="acc-password" onkeydown="if(event.key==='Enter')submitAccountForm()">
+        </div>
+        <button class="btn-primary" style="width:100%;margin-top:1rem" id="account-submit-btn" onclick="submitAccountForm()">LOG IN</button>
+        <p style="text-align:center;margin-top:1rem;font-size:.85rem" id="account-toggle-text">
+          New here? <a href="#" onclick="toggleAccountMode(event)" style="color:var(--accent-text)">Create an account</a>
+        </p>
+      </div>
+
+      <div id="account-error" style="color:var(--red,#ff5c5c);font-size:.85rem;min-height:1.2em;margin-top:.5rem;text-align:center"></div>
+      <p style="text-align:center;margin-top:.4rem;font-size:.85rem"><a href="#" onclick="closeAccountModal();openTrackOrderModal(event);return false" class="link-accent">Track an order without logging in</a></p>
+      <p style="text-align:center;margin-top:.5rem;font-size:.8rem;color:var(--text-dim)">An account is required to check out — it's how we keep your order history, delivery tracking and invoices in one place. By continuing you agree to our <a href="/legal/terms.html" target="_blank" style="color:inherit;text-decoration:underline">Terms</a> &amp; <a href="/legal/privacy-policy.html" target="_blank" style="color:inherit;text-decoration:underline">Privacy Policy</a>.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════ PROFILE PAGE (Myntra-style: sidebar on desktop, menu list on phones) ══════════════ -->
+<div id="profile-page" role="dialog" aria-modal="true" aria-label="My account">
+  <header class="pf-topbar">
+    <button type="button" class="pf-back" onclick="pfBack()" aria-label="Back">←</button>
+    <div class="pf-topbar-title" id="pf-topbar-title">My Account</div>
+    <button type="button" class="pf-x" onclick="closeProfilePage()" aria-label="Close">✕</button>
+  </header>
+  <div class="pf-shell">
+    <aside class="pf-side">
+      <div class="pf-side-head">Account</div>
+      <div class="pf-side-sub" id="pf-side-sub"></div>
+      <nav class="pf-nav">
+        <button type="button" data-pf="overview" onclick="pfShow('overview')">Overview</button>
+        <div class="pf-nav-group">Orders</div>
+        <button type="button" data-pf="orders" onclick="pfShow('orders')">Orders &amp; Tracking</button>
+        <div class="pf-nav-group">Account</div>
+        <button type="button" data-pf="details" onclick="pfShow('details')">Profile Details</button>
+        <button type="button" data-pf="addresses" onclick="pfShow('addresses')">Addresses</button>
+        <button type="button" data-pf="security" onclick="pfShow('security')">Password</button>
+        <div class="pf-nav-group">Legal</div>
+        <a href="/legal/terms.html" target="_blank" rel="noopener">Terms of Use</a>
+        <a href="/legal/privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a>
+        <a href="/legal/shipping-policy.html" target="_blank" rel="noopener">Shipping Policy</a>
+        <a href="/legal/refund-policy.html" target="_blank" rel="noopener">Refund Policy</a>
+      </nav>
+      <button type="button" class="pf-logout" onclick="accountLogout()">LOGOUT</button>
+    </aside>
+
+    <main class="pf-main">
+      <!-- Overview -->
+      <section id="pf-sec-overview" class="pf-sec">
+        <div class="pf-hello">
+          <div class="pf-avatar" id="pf-avatar">L</div>
+          <div class="pf-hello-text">
+            <div class="pf-hello-name" id="pf-hello-name">Hello</div>
+            <div class="pf-hello-sub" id="pf-hello-sub"></div>
+          </div>
+          <button type="button" class="pf-edit-btn" onclick="pfShow('details')">EDIT PROFILE</button>
+        </div>
+        <div class="pf-tiles">
+          <button type="button" class="pf-tile" onclick="pfShow('orders')"><span class="pf-tile-ico">📦</span><b>Orders</b><small id="pf-tile-orders">Check order status &amp; tracking</small></button>
+          <button type="button" class="pf-tile" onclick="pfShow('addresses')"><span class="pf-tile-ico">📍</span><b>Addresses</b><small id="pf-tile-addr">Places you've ordered to</small></button>
+          <button type="button" class="pf-tile" onclick="pfShow('details')"><span class="pf-tile-ico">👤</span><b>Profile Details</b><small>Name, mobile &amp; email</small></button>
+          <button type="button" class="pf-tile" onclick="pfShow('security')"><span class="pf-tile-ico">🔒</span><b>Password</b><small>Change or set a password</small></button>
+        </div>
+        <div id="pf-verify-banner"></div>
+        <div id="pf-recent"></div>
+        <button type="button" class="pf-logout pf-logout-mobile" onclick="accountLogout()">LOGOUT</button>
+      </section>
+
+      <!-- Orders -->
+      <section id="pf-sec-orders" class="pf-sec" hidden>
+        <h2 class="pf-h2">All Orders</h2>
+        <div class="pf-toolbar">
+          <input type="search" id="pf-order-search" placeholder="Search by product or order ID" oninput="renderProfileOrders()">
+          <div class="pf-chips" id="pf-chips">
+            <button type="button" class="pf-chip active" data-f="all" onclick="pfFilter('all')">All</button>
+            <button type="button" class="pf-chip" data-f="active" onclick="pfFilter('active')">On the way</button>
+            <button type="button" class="pf-chip" data-f="delivered" onclick="pfFilter('delivered')">Delivered</button>
+            <button type="button" class="pf-chip" data-f="cancelled" onclick="pfFilter('cancelled')">Cancelled</button>
+          </div>
+        </div>
+        <div id="account-orders-list"><p class="pf-muted">Loading…</p></div>
+      </section>
+
+      <!-- Profile details -->
+      <section id="pf-sec-details" class="pf-sec" hidden>
+        <h2 class="pf-h2">Profile Details</h2>
+        <div class="pf-card">
+          <div class="pf-field"><label for="prof-name">Full Name</label><input type="text" id="prof-name" autocomplete="name"></div>
+          <div class="pf-field"><label for="prof-phone" id="prof-phone-label">Mobile Number</label><input type="tel" id="prof-phone" autocomplete="tel"></div>
+          <div class="pf-field"><label for="prof-email">Email <span class="pf-muted">(cannot be changed)</span></label><input type="email" id="prof-email" disabled placeholder="Not added"></div>
+          <div id="profile-error" class="pf-error"></div>
+          <button type="button" class="pf-save" onclick="saveProfile()">SAVE DETAILS</button>
+        </div>
+      </section>
+
+      <!-- Addresses -->
+      <section id="pf-sec-addresses" class="pf-sec" hidden>
+        <h2 class="pf-h2">Addresses</h2>
+        <p class="pf-muted" style="margin-bottom:14px">Saved automatically from the orders you've placed.</p>
+        <div id="pf-addresses"></div>
+      </section>
+
+      <!-- Password -->
+      <section id="pf-sec-security" class="pf-sec" hidden>
+        <h2 class="pf-h2" id="password-heading">Change Password</h2>
+        <div class="pf-card" id="prof-password-section">
+          <div class="pf-field"><input type="password" placeholder="Current password" id="prof-current-password" autocomplete="current-password"></div>
+          <div class="pf-field"><input type="password" placeholder="New password (min 8 characters)" id="prof-new-password" autocomplete="new-password"></div>
+          <div id="password-error" class="pf-error"></div>
+          <button type="button" class="pf-save" onclick="savePassword()">UPDATE PASSWORD</button>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<!-- ══════════════ ORDER DETAIL MODAL (Amazon/Myntra-style) ══════════════ -->
+<div id="order-detail-modal" class="modal-overlay">
+  <div class="modal-box" style="max-width:560px">
+    <button class="modal-close" onclick="closeOrderDetailModal()">✕</button>
+    <div id="order-detail-body"><p style="color:var(--text-dim)">Loading…</p></div>
+  </div>
+</div>
+
+<!-- ══════════════ CUSTOM TEE POSTER MODAL (opened from the "Custom Tee" circle) ══════════════ -->
+<div id="custom-tee-modal" class="modal-overlay">
+  <div class="modal-box custom-tee-modal-box">
+    <button class="modal-close" onclick="closeCustomTeeModal()" type="button" aria-label="Close">✕</button>
+    <img src="images/customtee.w800.webp" srcset="images/customtee.w480.webp 480w, images/customtee.w800.webp 800w" sizes="(max-width:768px) 90vw, 420px" width="800" height="1200" alt="Lallewools custom tee — we can customize your image on a tee, DM us" decoding="async" />
+    <a class="btn-primary custom-tee-btn" href="#" target="_blank" rel="noopener noreferrer" onclick="return openCustomTeeChat(event, 'photo')">DM US YOUR IMAGE</a>
+    <p class="custom-tee-note">Opens WhatsApp with your message ready to send.</p>
+  </div>
+</div>
+
+<!-- ══════════════ VERIFY EMAIL MODAL (shown when checkout needs a confirmed email) ══════════════ -->
+<div id="verify-email-modal" class="modal-overlay">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeVerifyEmailModal()">✕</button>
+    <h3>Confirm your email</h3>
+    <p id="verify-email-text" style="color:var(--text-dim);font-size:.9rem;margin-top:-.5rem"></p>
+    <div id="verify-email-msg" style="font-size:.85rem;min-height:1.2em;margin-top:.5rem"></div>
+    <button class="btn-primary" style="width:100%;margin-top:.5rem" onclick="verifyEmailContinue()">I'VE CONFIRMED — CONTINUE</button>
+    <button class="btn-ghost" style="width:100%;margin-top:.5rem" id="verify-resend-btn" onclick="resendVerificationEmail()">RESEND EMAIL</button>
+  </div>
+</div>
+
+<!-- ══════════════ TRACK ORDER MODAL (order ID + phone number, or logged in) ══════════════ -->
+<div id="track-order-modal" class="modal-overlay">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeTrackOrderModal()">✕</button>
+    <h3>Track Your Order</h3>
+    <p style="color:var(--text-dim);font-size:.85rem;margin-top:-.5rem">Enter the Order ID from your confirmation email and the phone number you ordered with.</p>
+    <div class="checkout-form">
+      <input type="text" placeholder="Order ID (e.g. LWABC123)" id="track-order-id" style="text-transform:uppercase">
+      <input type="tel" placeholder="Phone number used on the order" id="track-order-phone" inputmode="numeric" autocomplete="tel" maxlength="15">
+    </div>
+    <div id="track-order-error" style="color:var(--red,#ff5c5c);font-size:.85rem;min-height:1.2em;margin-top:.5rem"></div>
+    <button class="btn-primary" style="width:100%;margin-top:.5rem" onclick="submitTrackOrder()">TRACK ORDER</button>
+    <div id="track-order-result" style="margin-top:1.25rem"></div>
+  </div>
+</div>
+
+
+<main id="main-content">
+
+  <!-- HERO — Bewakoof style banner -->
+  <section id="hero" aria-label="Featured">
+    <div class="hero-banner-slider" id="hero-slider">
+      <div class="hero-slide hero-slide--tee active" style="background:linear-gradient(120deg,#0a0a0a 0%,#1a0a1a 50%,#0a0a0a 100%)">
+        <div class="hero-slide-content">
+          <div class="hero-eyebrow">NEW DROP</div>
+          <h1 class="hero-title">WEAR YOUR<br/><span class="accent">OBSESSION</span></h1>
+          <p class="hero-subtitle">Oversized tees &amp; fan art for your culture</p>
+          <div class="hero-cta-group">
+            <a href="#clothing-section" class="btn-primary">SHOP NOW</a>
+          </div>
+        </div>
+        <div class="hero-slide-visual">
+          <div class="hero-tshirt-showcase">
+            <div class="mockup-tee-body">
+              <img src="images/clothing/ganesha_tee.w480.webp" srcset="images/clothing/ganesha_tee.w480.webp 480w, images/clothing/ganesha_tee.w800.webp 800w" sizes="(max-width:768px) 40vw, 200px" width="160" height="200" alt="Ganesha oversized tee" class="hero-slide-img" fetchpriority="high" decoding="async" />
+            </div>
+            <div class="floating-tag tag-2">NEW ✨</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORY QUICK LINKS (Bewakoof style) -->
+  <section class="category-strip">
+    <div class="container">
+      <div class="cat-grid">
+        <button type="button" class="cat-chip" data-cat="tees" onclick="scrollToSection('clothing-section')">
+          <div class="cat-icon">👕</div>
+          <span>Oversized Tees</span>
+        </button>
+        <button type="button" class="cat-chip" data-cat="drops" onclick="scrollToSection('drops-section')">
+          <div class="cat-icon">🔥</div>
+          <span>New Drops</span>
+        </button>
+        <button type="button" class="cat-chip" data-cat="custom" onclick="openCustomTeeModal()">
+          <div class="cat-icon"><img src="images/customtee.w480.webp" width="64" height="96" alt="" loading="lazy" decoding="async" /></div>
+          <span>Custom Tee</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE TICKER -->
+  <div class="marquee-wrapper" aria-hidden="true">
+    <div class="marquee-track">
+      <span>STREETWEAR</span><span class="dot">●</span>
+      <span>ANIME CULTURE</span><span class="dot">●</span>
+      <span>GAMING FITS</span><span class="dot">●</span>
+      <span>FAN ART</span><span class="dot">●</span>
+      <span>LIMITED DROPS</span><span class="dot">●</span>
+      <span>FAN DESIGNS</span><span class="dot">●</span>
+      <span>LALLEWOOLS ORIGINALS</span><span class="dot">●</span>
+      <span>STREETWEAR</span><span class="dot">●</span>
+      <span>ANIME CULTURE</span><span class="dot">●</span>
+      <span>GAMING FITS</span><span class="dot">●</span>
+      <span>FAN ART</span><span class="dot">●</span>
+      <span>LIMITED DROPS</span><span class="dot">●</span>
+      <span>FAN DESIGNS</span><span class="dot">●</span>
+      <span>LALLEWOOLS ORIGINALS</span><span class="dot">●</span>
+    </div>
+  </div>
+
+  <!-- TRENDING DROPS -->
+  <section id="drops-section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">🔥 HOT RIGHT NOW</div>
+          <h2 class="section-title">Trending <span class="accent">Drops</span></h2>
+        </div>
+        <a href="#clothing-section" class="see-all-link">SEE ALL →</a>
+      </div>
+      <div class="products-grid" id="trending-grid" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- CLOTHING SECTION -->
+  <section id="clothing-section">
+    <div class="container">
+      <div class="section-eyebrow">👕 CLOTHING</div>
+      <h2 class="section-title">The Collection</h2>
+      <p class="section-subtitle">Premium oversized tees crafted for your culture.</p>
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">ALL</button>
+        <button class="filter-btn" data-filter="artist">Artist</button>
+        <button class="filter-btn" data-filter="streetwear">Streetwear</button>
+        <button class="filter-btn" data-filter="gaming">Gaming</button>
+        <button class="filter-btn" data-filter="movies">Movies</button>
+        <button class="filter-btn" data-filter="minimal">Minimal</button>
+      </div>
+      <div class="products-grid" id="clothing-grid"></div>
+    </div>
+  </section>
+
+  <!-- CUSTOM TEE (redirects to admin WhatsApp; hidden unless ADMIN_WHATSAPP is set) -->
+  <section id="custom-tee-section" hidden>
+    <div class="container">
+      <div class="custom-tee-box">
+        <div class="custom-tee-text">
+          <div class="section-eyebrow">🎨 MADE FOR YOU</div>
+          <h2 class="section-title">Custom <span class="accent">Tee</span></h2>
+          <p class="section-subtitle">Got your own design, name or idea? Chat with us on WhatsApp and we'll turn it into an oversized tee.</p>
+          <ul class="custom-tee-points">
+            <li>Share your design or idea</li>
+            <li>Pick size &amp; colour</li>
+            <li>Get a quote and confirm on chat</li>
+          </ul>
+        </div>
+        <div class="custom-tee-form">
+          <label for="ct-name">Your name <span>(optional)</span></label>
+          <input type="text" id="ct-name" maxlength="60" autocomplete="name" placeholder="Your name" />
+          <label for="ct-idea">What do you have in mind? <span>(optional)</span></label>
+          <textarea id="ct-idea" rows="3" maxlength="400" placeholder="e.g. Band logo on front, small text on back, size L, black tee"></textarea>
+          <a id="custom-tee-btn" class="btn-primary custom-tee-btn" href="#" target="_blank" rel="noopener noreferrer" onclick="return openCustomTeeChat(event)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.200 8.200 0 1 1 12 20.200zm4.500-6.100c-.2-.1-1.500-.7-1.700-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.200-.3.200-.5.100a6.700 6.700 0 0 1-3.300-2.900c-.2-.4.2-.4.700-1.300.1-.2 0-.3 0-.5l-.8-1.800c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.300-.3.300-1 1-1 2.400s1 2.800 1.200 3c.1.200 2.100 3.200 5.100 4.500 1.900.8 2.600.9 3.500.7.600-.1 1.700-.7 2-1.400.2-.7.2-1.200.2-1.400-.1-.1-.3-.2-.5-.3z"/></svg>
+            CHAT ON WHATSAPP
+          </a>
+          <p class="custom-tee-note">Opens WhatsApp with your message ready to send.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY -->
+  <section id="community-section">
+    <div class="container">
+      <div class="section-eyebrow">❤ LALLEWOOLS FAM</div>
+      <h2 class="section-title">The <span class="accent">Community</span></h2>
+      <p class="community-sub" id="community-sub" hidden>Real photos and words from our customers — tap one to see the tee.</p>
+      <div class="community-grid">
+        <div class="community-card" style="grid-row:span 2">
+          <div class="community-img" style="background:linear-gradient(160deg,#1a1a2e,#16213e,#0f3460)">
+            <div class="community-overlay"><span>@sachinn.wav</span><p>"This tee literally made my whole aesthetic."</p></div>
+            <div class="community-icon">👕 GAMING DROP</div>
+          </div>
+        </div>
+        <div class="community-card">
+          <div class="community-img" style="background:linear-gradient(160deg,#0d0d0d,#1a0026)">
+            <div class="community-overlay"><span>@riya.creates</span><p>"My room = Lallewools gallery now."</p></div>
+            <div class="community-icon">👕 ANIME DROP</div>
+          </div>
+        </div>
+        <div class="community-card">
+          <div class="community-img" style="background:linear-gradient(160deg,#0a0a0a,#1a1a00)">
+            <div class="community-overlay"><span>@akash.pixels</span><p>"All eyes on me."</p></div>
+            <div class="community-icon">👕 ARTIST DROP</div>
+          </div>
+        </div>
+        <div class="community-card">
+          <div class="community-img" style="background:linear-gradient(160deg,#0f0f23,#1a002e)">
+            <div class="community-overlay"><span>@meena.doodles</span><p>"Finally a brand that gets us."</p></div>
+            <div class="community-icon">🖼 LALLEWOOLS ORIGINAL</div>
+          </div>
+        </div>
+        <div class="community-card">
+          <div class="community-img" style="background:linear-gradient(160deg,#0a1628,#0f2040)">
+            <div class="community-overlay"><span>@dhruv.fits</span><p>"The quality hits different."</p></div>
+            <div class="community-icon">👕 MINIMAL DROP</div>
+          </div>
+        </div>
+      </div>
+      <div class="community-cta">
+        <p>Tag your LALLEWOOLS fit with <strong>#WearYourObsession</strong></p>
+        <div class="social-links" id="community-social" hidden></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section id="newsletter-section">
+    <div class="container">
+      <div class="newsletter-box">
+        <div class="newsletter-text">
+          <div class="section-eyebrow">STAY IN THE LOOP</div>
+          <h2>Get early access to <span class="accent">every drop.</span></h2>
+          <p>No spam. Just limited drops, exclusive codes, and culture.</p>
+        </div>
+        <div class="newsletter-form">
+          <input type="email" placeholder="your@email.com" id="email-input" autocomplete="email" inputmode="email" aria-label="Email address" onkeydown="if(event.key==='Enter')subscribeNewsletter()" />
+          <button class="btn-primary" id="newsletter-btn" onclick="subscribeNewsletter()">JOIN THE FAM</button>
+        </div>
+        <p class="newsletter-note" id="newsletter-msg" role="status"></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="images/logo.w480.webp" alt="LALLEWOOLS" class="footer-logo-img" width="120" height="40" loading="lazy" />
+        </div>
+        <p>Wear your obsession.<br/>Built for the culture.</p>
+        <div class="footer-social" id="footer-social" hidden></div>
+      </div>
+      <details class="footer-links-group">
+        <summary>SHOP</summary>
+        <a href="#clothing-section">Clothing</a>
+          <a href="#drops-section">New Drops</a>
+        <a href="#custom-tee-section" class="nav-custom-link" hidden>Custom Tee</a>
+      </details>
+      <details class="footer-links-group">
+        <summary>HELP</summary>
+        <a href="legal/shipping-policy.html">Shipping Info</a>
+        <a href="legal/refund-policy.html">Returns &amp; Refunds</a>
+        <a href="#" onclick="openTrackOrderModal(event)">Track Order</a>
+        <a href="#" id="footer-contact-link" hidden>Contact Us</a>
+      </details>
+      <details class="footer-links-group">
+        <summary>LEGAL</summary>
+        <a href="legal/privacy-policy.html">Privacy Policy</a>
+        <a href="legal/terms.html">Terms of Service</a>
+      </details>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="footer-year">2025</span> LALLEWOOLS. All rights reserved.</span>
+      <span>Made with ❤ for the culture</span>
+    </div>
+  </div>
+</footer>
+
+<!-- PRODUCT DETAIL MODAL -->
+<div id="product-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Product details">
+  <div class="modal-box product-modal-box">
+    <button class="modal-close pdp-back" onclick="closeProductModal()" type="button" aria-label="Close product"><span class="x-glyph">✕</span><span class="back-glyph">←</span></button>
+    <div id="product-modal-content"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<noscript><div style="position:fixed;inset:auto 0 0 0;z-index:99999;background:#C8FF00;color:#000;padding:12px 16px;text-align:center;font:600 14px system-ui">LALLEWOOLS needs JavaScript to browse and order. Please enable it in your browser.</div></noscript>
+<script src="js/api.js"></script>
+<script src="js/script.js"></script>
+<script src="js/reviews.js"></script>
+</body>
+</html>

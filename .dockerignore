@@ -1,0 +1,14 @@
+node_modules
+npm-debug.log*
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+server/data/store.sqlite*
+server/data/backups
+tests
+*.md
+Dockerfile
+docker-compose.yml
+server/data/uploads

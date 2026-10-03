@@ -1,0 +1,21 @@
+node_modules/
+.env
+server/data/store.sqlite
+server/data/store.sqlite.tmp
+server/data/backups/
+tests/.tmp-test.sqlite*
+npm-debug.log*
+.DS_Store
+
+.vercel
+.env
+.env.local
+.env.*.local
+server/data/products.json.tmp
+tests/.tmp-test-products.json*
+
+# generated at deploy time
+server/data/*.sqlite
+server/data/backups/
+
+server/data/uploads/

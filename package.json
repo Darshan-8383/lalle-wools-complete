@@ -1,0 +1,37 @@
+{
+  "name": "lallewools-fullstack",
+  "version": "1.0.0",
+  "description": "LALLEWOOLS storefront \u2014 full-stack app (Express API + original frontend) ready to plug into Razorpay and Shiprocket.",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "test": "node --test",
+    "backup": "node scripts/backup-db.js",
+    "hash-password": "node scripts/hash-password.js",
+    "generate-jwt-secret": "node scripts/generate-jwt-secret.js",
+    "optimize-images": "node scripts/optimize-images.js",
+    "icons": "node scripts/generate-icons.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "compression": "^1.8.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.19.2",
+    "express-rate-limit": "^8.7.0",
+    "helmet": "^8.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "morgan": "^1.12.1",
+    "nodemailer": "^10.0.10",
+    "pdfkit": "^0.20.2",
+    "razorpay": "^2.9.4",
+    "sql.js": "^1.14.2"
+  },
+  "engines": {
+    "node": ">=18.18"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.5"
+  }
+}

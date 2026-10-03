@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LALLEWOOLS — Admin</title>
+<style>
+  :root{ --bg:#0A0A0A; --panel:#151515; --border:#2a2a2a; --lime:#C8FF00; --text:#eee; --dim:#999; --red:#ff5c5c; --green:#5cff9d; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,Segoe UI,Roboto,sans-serif}
+  header{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;border-bottom:1px solid var(--border)}
+  header h1{font-size:1.1rem;margin:0;letter-spacing:.05em}
+  header h1 span{color:var(--lime)}
+  #logout-btn{background:none;border:1px solid var(--border);color:var(--dim);padding:.4rem .8rem;border-radius:6px;cursor:pointer;font-size:.8rem}
+  #logout-btn:hover{color:var(--text);border-color:var(--dim)}
+  main{max-width:1100px;margin:0 auto;padding:1.5rem}
+  .tabs{display:flex;gap:.5rem;margin-bottom:1.5rem;border-bottom:1px solid var(--border)}
+  .tab{padding:.6rem 1rem;cursor:pointer;color:var(--dim);border-bottom:2px solid transparent;font-size:.9rem}
+  .tab.active{color:var(--lime);border-color:var(--lime)}
+  .stats-row{display:flex;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap}
+  .stat-card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:1rem 1.5rem;min-width:140px}
+  .stat-card .num{font-size:1.6rem;font-weight:700;color:var(--lime)}
+  .stat-card .label{font-size:.75rem;color:var(--dim);text-transform:uppercase;letter-spacing:.05em}
+  table{width:100%;border-collapse:collapse;font-size:.85rem}
+  th,td{text-align:left;padding:.6rem .5rem;border-bottom:1px solid var(--border)}
+  th{color:var(--dim);font-weight:500;font-size:.75rem;text-transform:uppercase;letter-spacing:.04em}
+  tr.order-row{cursor:pointer}
+  tr.order-row:hover{background:#1a1a1a}
+  .status-pill{padding:.15rem .55rem;border-radius:20px;font-size:.7rem;text-transform:uppercase;letter-spacing:.03em}
+  .status-pending,.status-awaiting_payment{background:#3a3010;color:#ffd85c}
+  .status-confirmed,.status-cod_confirmed{background:#123a1e;color:var(--green)}
+  .status-shipped,.status-shipped_pending_pickup{background:#0f2a3a;color:#5cc8ff}
+  .status-delivered{background:#123a1e;color:var(--green)}
+  .status-cancelled,.status-failed,.status-refunded{background:#3a1212;color:var(--red)}
+  .order-detail{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:1rem;margin:.5rem 0 1rem}
+  .order-detail .row{display:flex;justify-content:space-between;padding:.25rem 0;font-size:.85rem}
+  .settings-card{max-width:560px;background:var(--card,#141414);border:1px solid var(--border);border-radius:10px;padding:1.25rem}
+  .btn{background:var(--lime);color:#0A0A0A;border:none;padding:.5rem 1rem;border-radius:6px;font-weight:700;cursor:pointer;font-size:.8rem;margin-right:.5rem}
+  .btn.secondary{background:none;border:1px solid var(--border);color:var(--text)}
+  .btn.danger{background:var(--red);color:#fff}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  input,select{background:#0f0f0f;border:1px solid var(--border);color:var(--text);padding:.4rem .5rem;border-radius:6px;font-size:.85rem}
+  input[type=number]{width:80px}
+  #login-screen{max-width:340px;margin:15vh auto;padding:2rem;background:var(--panel);border:1px solid var(--border);border-radius:12px}
+  #login-screen h2{margin-top:0}
+  #login-screen input{width:100%;margin-bottom:.75rem;padding:.6rem}
+  #login-error{color:var(--red);font-size:.85rem;min-height:1.2em}
+  .hidden{display:none !important}
+  .filter-bar{display:flex;gap:.5rem;margin-bottom:1rem;align-items:center}
+  .muted{color:var(--dim)}
+  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;z-index:100;padding:1rem}
+  .modal-overlay.hidden{display:none !important}
+  .modal-box{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:1.5rem;max-width:640px;width:100%;max-height:85vh;overflow-y:auto}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem 1rem}
+  .form-grid label{display:flex;flex-direction:column;gap:.3rem;font-size:.8rem;color:var(--dim)}
+  .form-grid input,.form-grid select,.form-grid textarea{width:100%}
+  .product-thumb{width:40px;height:40px;object-fit:cover;border-radius:6px;background:#0f0f0f}
+</style>
+</head>
+<body>
+
+<div id="login-screen">
+  <h2>LALLE<span style="color:var(--lime)">WOOLS</span> Admin</h2>
+  <input id="login-email" type="email" placeholder="Admin email" autocomplete="username">
+  <input id="login-password" type="password" placeholder="Password" autocomplete="current-password">
+  <button class="btn" style="width:100%" onclick="adminLogin()">Log in</button>
+  <div id="login-error"></div>
+</div>
+
+<div id="dashboard" class="hidden">
+  <header>
+    <h1>LALLE<span>WOOLS</span> — Admin</h1>
+    <button id="logout-btn" onclick="adminLogout()">Log out</button>
+  </header>
+  <main>
+    <div class="stats-row" id="stats-row"></div>
+    <div class="tabs">
+      <div class="tab active" data-tab="orders" onclick="switchTab('orders')">Orders</div>
+      <div class="tab" data-tab="products" onclick="switchTab('products')">Products</div>
+      <div class="tab" data-tab="reviews" onclick="switchTab('reviews')">Reviews</div>
+      <div class="tab" data-tab="settings" onclick="switchTab('settings')">Settings</div>
+    </div>
+
+    <div id="tab-orders">
+      <div class="filter-bar">
+        <span class="muted">Filter:</span>
+        <select id="status-filter" onchange="loadOrders()">
+          <option value="">All statuses</option>
+          <option value="pending">Pending</option>
+          <option value="confirmed">Confirmed</option>
+          <option value="shipped_pending_pickup">Shipment booking</option>
+          <option value="shipped">Shipped</option>
+          <option value="delivered">Delivered</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+        <button class="btn secondary" onclick="loadOrders()">Refresh</button>
+      </div>
+      <table>
+        <thead><tr><th>Order</th><th>Customer</th><th>Total</th><th>Payment</th><th>Status</th><th>Placed</th></tr></thead>
+        <tbody id="orders-body"></tbody>
+      </table>
+    </div>
+
+    <div id="tab-products" class="hidden">
+      <div class="filter-bar">
+        <button class="btn" onclick="openProductForm()">+ Add Product</button>
+        <button class="btn" style="margin-left:.5rem" onclick="exportCatalog()">⬇ Export products.json</button>
+      </div>
+      <table>
+        <thead><tr><th>Photo</th><th>Product</th><th>Type</th><th>Price</th><th>Stock</th><th>Active</th><th></th></tr></thead>
+        <tbody id="products-body"></tbody>
+      </table>
+    </div>
+
+    <div id="tab-reviews" class="hidden">
+      <p class="muted" style="font-size:.85rem;margin:0 0 .75rem">Reviews go live as soon as a verified buyer posts them. <b>Highlight</b> the best ones to feature them (with their photos) in the storefront's <b>Community</b> section — the newest 8 highlighted reviews are shown. Delete anything inappropriate; its photos are removed too.</p>
+      <table>
+        <thead><tr><th>Product</th><th>Customer</th><th>Rating</th><th>Review</th><th>Photos</th><th>Date</th><th>Community</th><th></th></tr></thead>
+        <tbody id="reviews-body"></tbody>
+      </table>
+    </div>
+
+    <div id="tab-settings" class="hidden">
+      <div class="settings-card">
+        <h3 style="margin:0 0 .25rem">Custom Tee &mdash; WhatsApp</h3>
+        <p style="color:var(--dim);font-size:.85rem;margin:0 0 1rem">Customers who tap &ldquo;Chat on WhatsApp&rdquo; in the Custom Tee section are sent to this number. Leave blank to use <code>ADMIN_WHATSAPP</code> from .env (or hide the section if that is blank too).</p>
+        <label style="display:flex;flex-direction:column;gap:.3rem;font-size:.8rem;color:var(--dim)">WhatsApp number (with country code)
+          <input type="tel" id="wa-number" placeholder="e.g. 919876543210" style="width:100%;max-width:320px">
+        </label>
+        <div id="wa-msg" style="font-size:.85rem;min-height:1.2em;margin:.6rem 0"></div>
+        <button class="btn" onclick="saveWhatsapp()">Save</button>
+        <button class="btn secondary" id="wa-test" onclick="testWhatsapp()">Test link</button>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- ══════════════ PRODUCT ADD / EDIT MODAL ══════════════ -->
+<div id="product-modal-overlay" class="modal-overlay hidden">
+  <div class="modal-box">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+      <h2 id="product-modal-title" style="margin:0">Add Product</h2>
+      <button class="btn secondary" onclick="closeProductForm()">✕ Close</button>
+    </div>
+    <div id="product-form-error" style="color:var(--red);font-size:.85rem;min-height:1.2em;margin-bottom:.5rem"></div>
+
+    <div class="form-grid">
+      <label>Name<input type="text" id="pf-name"></label>
+      <input type="hidden" id="pf-type" value="clothing">
+      <label>Category<input type="text" id="pf-category" placeholder="e.g. anime, gaming, fan"></label>
+      <label>SKU (leave blank to auto-generate)<input type="text" id="pf-sku"></label>
+      <label>Price (₹)<input type="number" id="pf-price" min="0"></label>
+      <label>Old / strike-through price (₹, optional)<input type="number" id="pf-oldprice" min="0"></label>
+      <label>Stock<input type="number" id="pf-stock" min="0"></label>
+      <label>Weight (grams)<input type="number" id="pf-weight" min="0" value="250"></label>
+      <label>Emoji (shown as fallback icon)<input type="text" id="pf-emoji" maxlength="4" placeholder="🎨"></label>
+      <label>Badge (optional)
+        <select id="pf-badge">
+          <option value="">None</option>
+          <option value="new">New</option>
+          <option value="hot">Hot</option>
+          <option value="sale">Sale</option>
+          <option value="ltd">Limited</option>
+          <option value="launch">Launch Offer</option>
+        </select>
+      </label>
+      <label>Sticker text (optional, e.g. -20%)<input type="text" id="pf-sticker"></label>
+      <label>Image path<input type="text" id="pf-image" placeholder="images/clothing/example.jpg"></label>
+      <label style="grid-column:1/-1">Description<textarea id="pf-desc" rows="2" style="width:100%;background:#0f0f0f;border:1px solid var(--border);color:var(--text);border-radius:6px;padding:.5rem"></textarea></label>
+
+      <div id="pf-clothing-fields" style="display:contents">
+        <label>Sizes (comma-separated)<input type="text" id="pf-sizes" value="S,M,L,XL,XXL"></label>
+        <label>Tee color (hex)<input type="text" id="pf-teecolor" value="#0A0A0A"></label>
+        <label>Design text (use \n for line break)<input type="text" id="pf-designtext"></label>
+        <label>Design color (hex)<input type="text" id="pf-designcolor" value="#C8FF00"></label>
+      </div>
+
+      <label style="display:flex;align-items:center;gap:.5rem;grid-column:1/-1">
+        <input type="checkbox" id="pf-active" checked style="width:auto"> Active (visible on storefront)
+      </label>
+    </div>
+
+    <div style="margin-top:1.25rem;display:flex;gap:.5rem">
+      <button class="btn" onclick="submitProductForm()">Save Product</button>
+      <button class="btn secondary" onclick="closeProductForm()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

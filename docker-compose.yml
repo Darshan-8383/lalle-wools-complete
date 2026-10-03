@@ -1,0 +1,17 @@
+# docker compose up -d --build
+# Put your secrets in a .env file next to this one (copy .env.example), then run the command above.
+services:
+  shop:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+    ports:
+      - "4000:4000"
+    volumes:
+      - lallewools-data:/app/server/data   # database + automatic backups
+
+volumes:
+  lallewools-data:

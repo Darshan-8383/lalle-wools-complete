@@ -1,0 +1,302 @@
+/* ═══════════════════════════════════════════════════════════════
+   LALLEWOOLS — mobile.css  (loaded only at ≤768px)
+   Phone layout modelled on Myntra's app: compact header with a
+   permanent search bar, bottom tab bar, banner-style hero, tight
+   2-column product grid, full-screen product page / bag / checkout
+   with sticky action bars, and Myntra-sized text (14px body,
+   12–13px product text, 16px form fields so iOS never zooms).
+═══════════════════════════════════════════════════════════════ */
+
+:root{
+  --nav-h:56px;
+  --bottom-nav-h:58px;
+  --gutter:12px;
+  --safe-b:env(safe-area-inset-bottom,0px);
+  --safe-t:env(safe-area-inset-top,0px);
+}
+
+/* ───────── Base type & rhythm ───────── */
+body{
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  font-size:14px;line-height:1.45;
+  padding-bottom:calc(var(--bottom-nav-h) + var(--safe-b));
+}
+.hero-title,.section-title,.pdp-price{font-family:'Space Grotesk','Inter',system-ui,sans-serif}
+.container{padding:0 var(--gutter)}
+section{padding:18px 0}
+/* No scroll-reveal on phones: content is simply there (faster, and no blank flashes) */
+.reveal{opacity:1 !important;transform:none !important;transition:none !important}
+
+.btn-primary{padding:12px 20px;font-size:13px;letter-spacing:.05em;border-radius:6px}
+.btn-primary:hover{transform:none;box-shadow:none}
+.btn-ghost{padding:11px 18px;font-size:13px;letter-spacing:.04em;border-radius:6px}
+
+/* ───────── Header: logo · search · theme · bag ───────── */
+#navbar{height:var(--nav-h);padding-top:var(--safe-t);box-sizing:content-box;
+  background:var(--surface);border-bottom:1px solid var(--border);backdrop-filter:none}
+#navbar.scrolled{background:var(--surface)}
+[data-theme="light"] #navbar,[data-theme="light"] #navbar.scrolled{background:#fff}
+#navbar{--nav-total:calc(var(--nav-h) + var(--safe-t))}
+.nav-inner{padding:0 8px 0 var(--gutter);gap:8px}
+.nav-links,.nav-hamburger,.nav-account,.wishlist-btn{display:none}
+.nav-logo{margin-right:0}
+.nav-logo-img{height:24px}
+.nav-logo-sub{display:none}
+.nav-search-bar{
+  display:flex;flex:1;min-width:0;
+  background:var(--surface2);border:0;border-radius:8px;padding:0 12px;height:38px;gap:8px;
+}
+.nav-search-bar input{font-size:14px;cursor:pointer;text-overflow:ellipsis}
+.nav-actions{gap:0}
+.nav-icon-btn{width:40px;height:40px;border-radius:50%}
+.nav-icon-btn span{top:3px;right:2px}
+#hero{margin-top:calc(var(--nav-h) + var(--safe-t))}
+
+/* ───────── Bottom tab bar ───────── */
+#bottom-nav{
+  display:flex;position:fixed;left:0;right:0;bottom:0;z-index:900;
+  height:calc(var(--bottom-nav-h) + var(--safe-b));padding-bottom:var(--safe-b);
+  background:var(--surface);border-top:1px solid var(--border);
+}
+.bn-item{
+  flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  font-size:10.5px;font-weight:600;color:var(--text-dim);position:relative;
+}
+.bn-item.active{color:var(--accent-text)}
+.bn-icon-wrap{position:relative;display:inline-flex}
+.bn-badge{
+  display:none;position:absolute;top:-5px;right:-10px;min-width:16px;height:16px;padding:0 4px;
+  border-radius:8px;background:#D3141E;color:#fff;font:700 10px/16px 'Inter',sans-serif;font-style:normal;text-align:center;
+}
+.bn-badge.visible{display:block}
+
+/* ───────── Hero: compact promo banner, swipeable ───────── */
+.hero-banner-slider{height:218px;min-height:0;max-height:none;touch-action:pan-y}
+.hero-slide{flex-direction:row;align-items:center;gap:6px;padding:14px 16px 28px}
+.hero-slide-content{flex:1 1 0;min-width:0}
+.hero-eyebrow{font-size:10px;letter-spacing:.16em;margin-bottom:6px}
+.hero-title{font-size:clamp(1.5rem,7.4vw,1.9rem);line-height:1.03;letter-spacing:-.025em;margin-bottom:8px}
+.hero-subtitle{
+  font-size:12px;line-height:1.4;margin-bottom:12px;max-width:none;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.hero-cta-group{flex-direction:row;gap:8px}
+.hero-cta-group .btn-primary{padding:10px 18px;font-size:12px}
+.hero-slide-visual{display:flex;flex:0 0 112px;justify-content:center}
+.hero-tshirt-showcase{padding:0}
+.mockup-tee-body{width:104px;height:130px;clip-path:none;border-radius:8px;overflow:hidden;box-shadow:0 10px 28px rgba(0,0,0,.5)}
+.mockup-tee-body::before{display:none}
+.floating-tag{display:none}
+.slider-arrow{display:none}
+.slider-dots{bottom:10px}
+.dot{width:6px;height:6px}
+.dot.active{width:18px}
+
+/* ───────── Category circles ───────── */
+.category-strip{padding:14px 0 12px;border-bottom:0}
+.cat-grid{scroll-padding:0 var(--gutter);gap:18px;overflow-x:auto;margin:0 calc(-1 * var(--gutter));padding:0 var(--gutter);scroll-snap-type:x proximity}
+.cat-chip{padding:0;min-width:70px;gap:6px;background:none;border:0;border-radius:0;scroll-snap-align:start}
+.cat-chip:hover{background:none;transform:none}
+.cat-icon{width:64px;height:64px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:1.6rem;border:1px solid var(--border)}
+.cat-icon img{width:100%;height:100%;object-fit:cover}
+.cat-chip span{font-size:11.5px;font-weight:600;color:var(--text);letter-spacing:0}
+
+.marquee-wrapper{padding:8px 0}
+.marquee-track span{font-size:10px}
+
+/* ───────── Section headers (Myntra: small, bold, uppercase) ───────── */
+#drops-section,#clothing-section,#custom-tee-section,#community-section,#newsletter-section{border-top:8px solid var(--surface2)}
+#custom-tee-section{padding:32px 0}
+.section-header{margin-bottom:12px;flex-wrap:nowrap;align-items:center;gap:8px}
+.section-eyebrow{display:none}
+.section-title{font-size:15px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;line-height:1.25}
+.section-subtitle{font-size:12px;margin:2px 0 12px}
+.see-all-link{font-size:12px;font-weight:700;letter-spacing:.03em;color:var(--accent-text);white-space:nowrap}
+
+/* ───────── Sticky filter chips ───────── */
+.filter-bar{
+  position:sticky;top:calc(var(--nav-h) + var(--safe-t));z-index:50;
+  flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+  margin:0 calc(-1 * var(--gutter)) 12px;padding:10px var(--gutter);
+  background:var(--bg);border-bottom:1px solid var(--border);
+}
+.filter-bar::-webkit-scrollbar{display:none}
+.filter-btn{flex-shrink:0;white-space:nowrap;padding:7px 14px;font-size:12.5px;font-weight:600;letter-spacing:0;border-width:1px}
+
+/* ───────── Product cards ───────── */
+.products-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 8px;margin-bottom:8px}
+#trending-grid.products-grid{
+  scroll-padding:0 var(--gutter);display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+  margin:0 calc(-1 * var(--gutter)) 4px;padding:0 var(--gutter);
+}
+#trending-grid.products-grid::-webkit-scrollbar{display:none}
+#trending-grid .product-card{flex:0 0 42%;scroll-snap-align:start}
+.product-img{border-radius:4px}
+.product-card:hover .product-img-inner{transform:none}
+.product-quick-add{display:none}
+.product-badge{top:6px;left:6px;font-size:9.5px;padding:3px 6px}
+.product-wish-btn{top:6px;right:6px;width:30px;height:30px}
+.product-wish-btn svg{width:16px;height:16px}
+.product-info{padding:8px 2px 0}
+.product-brand{font-size:12px;letter-spacing:.03em}
+.product-name{font-size:12px;line-height:1.35}
+.product-price-row{gap:5px;margin-top:5px}
+.product-price{font-size:13px}
+.product-price-old{font-size:11px}
+.product-off{font-size:11px}
+
+/* ───────── Community / newsletter ───────── */
+.community-grid{scroll-padding:0 var(--gutter);display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;grid-template-rows:none;scrollbar-width:none;margin:0 calc(-1 * var(--gutter)) 16px;padding:0 var(--gutter)}
+.community-grid::-webkit-scrollbar{display:none}
+.community-card{flex:0 0 64%;height:210px;scroll-snap-align:start;grid-row:auto !important}
+.community-overlay{opacity:1}
+.community-cta{font-size:13px}
+.newsletter-box{grid-template-columns:1fr;gap:14px;padding:20px 16px;border-radius:12px}
+.newsletter-text h2{font-size:1.15rem}
+.newsletter-text p{font-size:13px}
+.newsletter-form{flex-direction:column}
+.newsletter-form input{min-height:46px;font-size:16px;border-radius:8px}
+.newsletter-form .btn-primary{min-height:46px}
+
+/* ───────── Footer: accordion links ───────── */
+#footer{padding:22px 0 12px}
+.footer-top{grid-template-columns:1fr;gap:0;margin-bottom:12px}
+.footer-brand{padding-bottom:18px}
+.footer-links-group{border-top:1px solid var(--border)}
+.footer-links-group summary{
+  display:flex;justify-content:space-between;align-items:center;cursor:pointer;
+  padding:14px 0;margin:0;font-size:12px;letter-spacing:.12em;color:var(--text);
+}
+.footer-links-group summary::after{content:'+';font-size:20px;font-weight:300;color:var(--text-dim)}
+.footer-links-group[open] summary::after{content:'−'}
+.footer-links-group a{padding:9px 0;margin:0;font-size:13px}
+.footer-bottom{flex-direction:column;align-items:center;gap:4px;font-size:11px;text-align:center;border-top:1px solid var(--border);padding-top:16px}
+
+/* ───────── Bag & wishlist: full-screen pages ───────── */
+#cart-sidebar,#wishlist-sidebar{width:100%;right:-100%;border:0;z-index:1500}
+#cart-sidebar.open,#wishlist-sidebar.open{right:0}
+#cart-overlay-bg{display:none}
+.cart-header{justify-content:flex-start;gap:6px;height:calc(var(--nav-h) + var(--safe-t));padding:var(--safe-t) var(--gutter) 0 6px;box-sizing:border-box;border-bottom:1px solid var(--border)}
+.cart-header .back-btn{order:0;margin:0;width:44px;height:44px;border-radius:50%;background:none;color:var(--text)}
+.back-btn .x-glyph{display:none}
+.back-btn .back-glyph{display:inline;font-size:24px;line-height:1}
+.cart-header h3{font-size:14px;letter-spacing:.08em}
+.cart-header h3 #cart-header-count{color:var(--text-dim);font-weight:600}
+#cart-items,#wishlist-items{padding:4px var(--gutter) 16px;overscroll-behavior:contain}
+.cart-empty{padding:72px 24px}
+.cart-item{gap:12px;padding:14px 0}
+.cart-item-img{width:78px;height:98px;border-radius:6px}
+.cart-item-name{font-size:13px}
+.cart-item-sub{font-size:12px}
+.cart-item-price{font-size:14px}
+#cart-footer{padding:10px var(--gutter) calc(10px + var(--safe-b));background:var(--surface);box-shadow:0 -6px 18px rgba(0,0,0,.10)}
+.price-details{font-size:13px;margin-bottom:10px}
+.btn-checkout{min-height:48px;border-radius:6px;font-size:14px;letter-spacing:.06em}
+
+/* ───────── Modals become full-screen pages ───────── */
+.modal-overlay{padding:0;align-items:stretch;background:var(--surface);backdrop-filter:none}
+.modal-box{
+  max-width:none;width:100%;height:100%;max-height:none;border:0;border-radius:0;background:var(--surface);
+  padding:calc(52px + var(--safe-t)) 16px calc(20px + var(--safe-b));
+  animation:pageIn .25s ease;overscroll-behavior:contain;
+}
+@keyframes pageIn{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
+.modal-box h3{font-size:1.1rem;padding-right:0}
+.modal-close{top:calc(8px + var(--safe-t));right:8px;width:40px;height:40px;z-index:5;background:var(--surface2)}
+
+/* ───────── Product page ───────── */
+.product-modal-box{padding:0;overflow-x:hidden}
+.pdp{display:block;padding-bottom:calc(84px + var(--safe-b))}
+.pdp-media{border-radius:0;aspect-ratio:4/5}
+.pdp-back{
+  position:fixed;top:calc(10px + var(--safe-t));left:10px;right:auto;width:38px;height:38px;
+  background:rgba(255,255,255,.94);color:#282C3F;box-shadow:0 2px 8px rgba(0,0,0,.3);z-index:7;
+}
+.pdp-back .x-glyph{display:none}
+.pdp-back .back-glyph{display:inline;font-size:22px;line-height:1}
+.pdp-info{padding:14px 16px 0}
+.pdp-brand{font-size:16px;font-weight:700;letter-spacing:0;text-transform:none;color:var(--text);margin-bottom:2px}
+.pdp-name{font-size:14px;font-weight:400;color:var(--text-dim);line-height:1.4;margin-bottom:10px;padding-right:0;letter-spacing:0}
+.pdp-price{font-size:18px}
+.pdp-old{font-size:14px}
+.pdp-off{font-size:14px}
+.pdp-tax{margin:2px 0 14px;font-size:12px}
+.pdp-section{padding:14px 0}
+.pdp-label{font-size:12px;margin-bottom:10px}
+.pdp-size{min-width:46px;height:46px}
+.pdp-desc{font-size:13.5px}
+.pdp-bar{
+  position:fixed;left:0;right:0;bottom:0;z-index:8;margin:0;gap:10px;
+  padding:10px 12px calc(10px + var(--safe-b));background:var(--surface);
+  border-top:1px solid var(--border);box-shadow:0 -6px 18px rgba(0,0,0,.10);
+}
+.pdp-bar button{min-height:48px;border-radius:6px;font-size:13px}
+.pdp-add:hover{transform:none;box-shadow:none}
+
+/* ───────── Checkout: full-screen steps with a sticky action bar ───────── */
+.checkout-modal-box{padding:0;display:flex;flex-direction:column;overflow:hidden}
+.checkout-steps{flex:1;min-height:0;display:flex;flex-direction:column;padding-top:calc(52px + var(--safe-t))}
+.checkout-step-indicator{margin:0;padding:12px 60px 12px 16px;border-bottom:1px solid var(--border)}
+.cs-step{font-size:0;gap:0}
+.cs-step.active{font-size:12.5px;gap:8px}
+.cs-line{margin:0 6px;min-width:10px}
+.checkout-pane.active{display:flex;flex-direction:column;flex:1;min-height:0;overflow-y:auto;padding:16px 16px 0;overscroll-behavior:contain}
+.checkout-pane h3{font-size:1rem;margin-bottom:14px}
+.checkout-pane#cp-4{padding-bottom:calc(20px + var(--safe-b));justify-content:center}
+.success-actions{flex-direction:column}
+.success-actions button{width:100%;min-height:48px}
+.cf-row{grid-template-columns:1fr}
+.checkout-form input,.checkout-form select,.checkout-pane input,.checkout-pane select{min-height:48px;font-size:16px;border-radius:8px}
+.checkout-actions{
+  position:sticky;bottom:0;margin:auto -16px 0;padding:12px 16px calc(12px + var(--safe-b));
+  background:var(--surface);border-top:1px solid var(--border);z-index:3;
+}
+.checkout-actions .btn-primary,.checkout-actions .btn-ghost{min-height:48px;font-size:13.5px}
+.checkout-pane > .checkout-actions:first-of-type{margin-top:auto}
+.order-trust-badges{gap:8px;justify-content:flex-start}
+.order-trust-badges span{font-size:11.5px;padding:5px 10px}
+.payment-opt{padding:14px}
+
+/* iOS Safari zooms any focused field under 16px */
+input,select,textarea{font-size:16px}
+.nav-search-bar input{font-size:14px}
+
+/* ───────── Search: full-screen page ───────── */
+.search-inner{max-width:none;padding:calc(8px + var(--safe-t)) 12px 24px}
+.search-top{gap:6px;margin-bottom:14px}
+#search-close{order:0;width:40px;height:40px;background:none;font-size:0;color:var(--text)}
+#search-close::before{content:'←';font-size:24px;line-height:1}
+.search-input-wrap{border:0;border-radius:8px;padding:10px 12px}
+.search-label{font-size:11px}
+.search-tag{font-size:12.5px;padding:7px 13px}
+.sr-name{font-size:13.5px}
+
+/* ───────── Toast: top of screen, never over the action bars ───────── */
+#toast{
+  bottom:auto;top:calc(var(--nav-h) + var(--safe-t) + 8px);white-space:normal;text-align:center;
+  max-width:calc(100vw - 32px);width:max-content;border-radius:8px;padding:10px 16px;font-size:13px;
+  transform:translateX(-50%) translateY(-12px);
+}
+#toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ───────── Account / order pages ───────── */
+.account-tabs{gap:24px !important}
+.od-head{padding-right:0}
+
+@media (max-width:360px){
+  :root{--gutter:10px}
+  .hero-slide-visual{flex-basis:96px}
+  .mockup-tee-body{width:92px;height:115px}
+  .hero-cta-group .btn-primary{padding:9px 14px}
+  #trending-grid .product-card{flex-basis:46%}
+}
+
+/* Reviews on the full-screen product page (phone) */
+.rv-thumb,.rv-add,.rv-strip:not(.rv-strip-grid) .rv-photo{width:68px;height:68px}
+.rv-big-num{font-size:2rem}
+.rv-summary{gap:14px}.rv-big{padding-right:14px}
+.rv-pick button{font-size:2.2rem;padding:0 3px}
+.rv-form textarea{font-size:16px} /* 16px so iOS never zooms into the field */
+.rv-lb-nav{width:40px;height:40px}
+.cm-text .cm-text-body{padding:14px 14px 52px;gap:8px}
+.cm-text .cm-text-body p{font-size:.88rem;-webkit-line-clamp:5}
